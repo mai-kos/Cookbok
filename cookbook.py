@@ -14,6 +14,8 @@ with open('recipes.txt', 'rt') as file:
         file.readline()
         cook_book.update({meal: ingredients_list})
 
+# проверяем вывод словаря
+
 pprint(f'cook_book = {cook_book}')
 print()
 
@@ -25,11 +27,14 @@ def get_shop_list_by_dishes(dishes, person_count):
             key = ingr.get('ingredient_name')
             values = {'measure': ingr.get('measure'), 
             'quantity': int(ingr.get('quantity')) * person_count}
-            shop_list.update({key: values})
+            if key in shop_list.keys():
+                shop_list[key]['quantity'] += int(ingr.get('quantity')) * person_count
+            else:
+                shop_list.setdefault(key, values)
     return shop_list
 
+# проверяем функцию
+# ингредиенты не повторяются, а суммируются, если ингредиент уже встречался
 
-
-
-pprint(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2))
+pprint(get_shop_list_by_dishes(['Фахитос', 'Омлет'], 2))
 print()
