@@ -14,10 +14,13 @@ with open('recipes.txt', 'rt') as file:
         file.readline()
         cook_book.update({meal: ingredients_list})
 
-# проверяем вывод словаря
+# Проверяем вывод словаря.
 
 pprint(f'cook_book = {cook_book}')
 print()
+
+# По-прежнему не совсем понимаю, как соблюдать длину строки по PEP8.
+# Как можно логически разбить строку 34?
 
 def get_shop_list_by_dishes(dishes, person_count):
     shop_list = {}
@@ -33,8 +36,8 @@ def get_shop_list_by_dishes(dishes, person_count):
                 shop_list.setdefault(key, values)
     return shop_list
 
-# проверяем функцию
-# ингредиенты не повторяются, а суммируются, если ингредиент уже встречался
+# Проверяем функцию.
+# Ингредиенты не повторяются, а суммируются, если ингредиент уже встречался.
 
 pprint(get_shop_list_by_dishes(['Фахитос', 'Омлет'], 2))
 print()
@@ -43,6 +46,10 @@ def count_lines(file):
     with open(file, 'rt') as file:
         x = len(file.readlines())
         return x
+
+# Немного усложнил задачу дополнительным условием, если мы не знаем кол-во строк в файлах.
+# То есть моя функция будет работать с любым количеством строк, при условии,
+# что мы знаем названия документов и их количество, как сказано в задаче.
 
 def combine_files():
     len1, len2, len3 = count_lines('1.txt'), count_lines('2.txt'), count_lines('3.txt')
@@ -57,7 +64,7 @@ def combine_files():
                 document.writelines(line + '\n' for line in file.readlines())
     return
 
-# Запись работает, но почему-то добавляется лишняя пустая строка
-# А если убрать из 57 строки '\n', то в итоге все наоборот склеивается
+# Запись работает, но почему-то добавляется лишняя пустая строка.
+# А если убрать из 64 строки '\n', то в итоге все наоборот склеивается.
 
 combine_files()
